@@ -1,8 +1,7 @@
 const express = require('express')
 const app = express()
 require('dotenv').config()
-const fetch = require('node-fetch')
-const path = require('path')
+// eslint-disable-next-line no-unused-vars
 const PORT = process.env.PORT || 3000
 
 // Sets up the Express app to handle data parsing
@@ -12,10 +11,8 @@ app.use(express.static('public'))
 
 // Routing
 require('./routes/html')(app)
+require('./routes/api')(app)
 
-// Routing for default page
-app.get('/', function (_req, res) {
-  res.sendFile(path.join(__dirname, 'index.html'))
-})
+app.listen(PORT, () => console.log(`=> http://localhost:${PORT}`))
 
 module.exports = app

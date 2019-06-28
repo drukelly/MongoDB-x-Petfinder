@@ -1,5 +1,5 @@
 {
-  "name": "MongoDB-x-Petfinder",
+  "name": "mongodb-x-petfinder",
   "version": "1.0.0",
   "description": "A collaboration of Petfinder and using MongoDB to limit API calls",
   "main": "server.js",
@@ -16,5 +16,18 @@
   "bugs": {
     "url": "https://github.com/drukelly/MongoDB-x-Petfinder/issues"
   },
-  "homepage": "https://github.com/drukelly/MongoDB-x-Petfinder#readme"
+  "homepage": "https://github.com/drukelly/MongoDB-x-Petfinder#readme",
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0"
+  }
 }

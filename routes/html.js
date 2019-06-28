@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+const fetch = require('node-fetch')
 const path = require('path')
 
 module.exports = app => {
