@@ -2,7 +2,7 @@
 const fetch = require('node-fetch')
 const mongojs = require('mongojs')
 
-const databaseURL = process.env.mongo_db
+const databaseURL = process.env.mongo_db || process.env.MONGODB_URI
 const collections = [process.env.mongo_collection]
 const mongodb = mongojs(databaseURL, collections)
 
