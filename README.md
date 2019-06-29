@@ -1,5 +1,5 @@
 # MongoDB x Petfinder
-A collaboration of Petfinder and using MongoDB to limit API calls
+Insert Petfinder API into MongoDB to limit API calls
 
 ## Prerequisites
 Petfinder API key
