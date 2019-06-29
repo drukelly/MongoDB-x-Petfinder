@@ -40,7 +40,7 @@
     const title =  path.replace('/', '')
     
     const titleCase = str => {
-      return str.toLowerCase().split(' ').map(function(word) {
+      return str.toLowerCase().split(' ').map((word) => {
         return (word.charAt(0).toUpperCase() + word.slice(1))
       }).join(' ')
     }
@@ -57,7 +57,7 @@
           `<a href="${id.url}" target="_blank" class="center-s link dim mw5 bg-white br3 pa3 pa4-ns ma3 blue ba b--black-10 w-25-ns w-100">
             <div class="tc">
               <img src="${id.photos[0].medium}" class="br-100 h3 w3 dib" title="Photo of a kitty staring at you">
-              <h1 class="f4 dark-blue">${titleCase(id.name)}</h1>
+              <h1 class="f4 dark-blue">${titleCase(id.name.replace('*', ''))}</h1>
               <hr class="mw3 bb bw1 b--black-10">
               <p class="near-black f6 fw6 lh-title">${id.contact.address.city}, ${id.contact.address.state}</p>
               <table class="f7 near-black w-100" cellspacing="0">

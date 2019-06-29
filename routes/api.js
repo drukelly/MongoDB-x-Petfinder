@@ -41,7 +41,7 @@ module.exports = (app) => {
                 mongodb.dogs.insert(pets[0].animals)
                 break
               case 'cat':
-                console.log(pets[0].animals)
+                // console.log(pets[0].animals)
                 mongodb.cats.insert(pets[0].animals)
                 break
             }
