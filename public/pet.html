@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MongoDB x Petfinder</title>
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+  <style>
+    .brand img {
+      transform: rotateY(180deg)
+    }
+  </style>
+</head>
+<body class="near-black sans-serif">
+  <header class="bg-purple fixed w-100 ph3 pv2 ph4-m ph5-l">
+    <nav class="f6 fw6 ttu tracked flex items-center">
+      <a class="brand link dim white w-auto mr3" href="/" title="Petfinder"><img src="/img/dog-cat.svg" alt="Petfinder" class="petfinder h3"></a>
+      <a class="link dim white mr3" href="/dogs" title="Dogs">Dogs</a>
+      <a class="link dim white mr3" href="/cats" title="Cats">Cats</a>
+    </nav>
+  </header>
+  <main class="ph3 pt6 pb3 ph4-m ph5-l w-100">
+    <h1 class="lh-title tl-ns tc" id="pet-label"></h1>
+    
+    <div class="flex-ns items-center-ns">
+      <a href="#" class="center-s link dim mw5 bg-white br3 pa3 pa4-ns ma3 ba b--black-10">
+        <div class="tc">
+          <img src="http://tachyons.io/img/avatar_1.jpg" class="br-100 h3 w3 dib" title="Photo of a kitty staring at you">
+          <h1 class="f4">Mimi Whitehouse</h1>
+          <hr class="mw3 bb bw1 b--black-10">
+        </div>
+        <p class="lh-copy measure center f6 black-70">
+          Quite affectionate and outgoing.
+          She loves to get chin scratches and will
+          roll around on the floor waiting for you give her more of them.
+        </p>
+      </a>
+      <a href="#" class="center-s link dim mw5 bg-white br3 pa3 pa4-ns ma3 ba b--black-10">
+        <div class="tc">
+          <img src="http://tachyons.io/img/avatar_1.jpg" class="br-100 h3 w3 dib" title="Photo of a kitty staring at you">
+          <h1 class="f4">Mimi Whitehouse</h1>
+          <hr class="mw3 bb bw1 b--black-10">
+        </div>
+        <p class="lh-copy measure center f6 black-70">
+          Quite affectionate and outgoing.
+          She loves to get chin scratches and will
+          roll around on the floor waiting for you give her more of them.
+        </p>
+      </a>
+      <a href="#" class="center-s link dim mw5 bg-white br3 pa3 pa4-ns ma3 ba b--black-10">
+        <div class="tc">
+          <img src="http://tachyons.io/img/avatar_1.jpg" class="br-100 h3 w3 dib" title="Photo of a kitty staring at you">
+          <h1 class="f4">Mimi Whitehouse</h1>
+          <hr class="mw3 bb bw1 b--black-10">
+        </div>
+        <p class="lh-copy measure center f6 black-70">
+          Quite affectionate and outgoing.
+          She loves to get chin scratches and will
+          roll around on the floor waiting for you give her more of them.
+        </p>
+      </a>
+    </div>
+
+  </main>
+  <script>
+    const path = window.location.pathname;
+    const title =  path.replace('/', '')
+    
+    const titleCase = str => {
+      return str.toLowerCase().split(' ').map(function(word) {
+        return (word.charAt(0).toUpperCase() + word.slice(1))
+      }).join(' ')
+    }
+    
+    document.querySelector('#pet-label').innerHTML = titleCase(title)
+
+    fetch(`/api/${path}`, () => {
+      console.log(path)
+    })
+  </script>
+</body>
+</html>

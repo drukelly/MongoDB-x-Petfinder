@@ -13,18 +13,22 @@
   </style>
 </head>
 <body class="near-black sans-serif">
-  <header class="bg-purple fixed w-100 ph3 pv3 pv4-ns ph4-m ph5-l">
+  <header class="bg-purple fixed w-100 ph3 pv2 ph4-m ph5-l">
     <nav class="f6 fw6 ttu tracked flex items-center">
       <a class="brand link dim white w-auto mr3" href="/" title="Petfinder"><img src="/img/dog-cat.svg" alt="Petfinder" class="petfinder h3"></a>
-      <a class="link dim white v-mid mr3" href="/dogs" title="Dogs">Dogs</a>
-      <a class="link dim white v-mid mr3" href="/cats" title="Cats">Cats</a>
-      <a class="link dim white v-mid" href="/other" title="Other">Other</a>
+      <a class="link dim white mr3" href="/dogs" title="Dogs">Dogs</a>
+      <a class="link dim white mr3" href="/cats" title="Cats">Cats</a>
     </nav>
   </header>
   <main class="ph3 pt6 pb3 ph4-m ph5-l w-100">
-    <h1 class="lh-title">Petfinder</h1>
-    <p class="lh-copy">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, ad quo! Neque excepturi explicabo quae eius accusamus, dolor temporibus! Voluptas, cum! Optio distinctio accusamus, animi corrupti aperiam necessitatibus accusantium cumque!
+    <h1 class="lh-title tl-ns tc">Petfinder</h1>
+    <p class="lh-copy tl-ns tc">
+      Click on one of the buttons below to populate the MongoDB database. Once clicked, you can navigate to the links on the navbar to pull up the results.
+    </p>
+
+    <p class="tl-ns tc">
+      <a href="/api/get-pets/dog" class="f6 link dim br-pill ph3 pv2 mr2 mb2 dib white bg-purple">Dogs</a>
+      <a href="/api/get-pets/cat" class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-purple">Cats</a>
     </p>
   </main>
   <script src="/js/app.js"></script>
