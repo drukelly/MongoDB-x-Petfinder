@@ -10,6 +10,9 @@
     .brand img {
       transform: rotateY(180deg)
     }
+    table,th,td {
+      border-collapse: collapse;
+    }
   </style>
 </head>
 <body class="near-black sans-serif">
@@ -20,51 +23,20 @@
       <a class="link dim white mr3" href="/cats" title="Cats">Cats</a>
     </nav>
   </header>
-  <main class="ph3 pt6 pb3 ph4-m ph5-l w-100">
-    <h1 class="lh-title tl-ns tc" id="pet-label"></h1>
+  <main class="ph3 pt6 pb5 ph4-m ph5-l w-100">
+    <h1 class="lh-title tl-ns tc mt0" id="pet-label"></h1>
     
-    <div class="flex-ns items-center-ns">
-      <a href="#" class="center-s link dim mw5 bg-white br3 pa3 pa4-ns ma3 ba b--black-10">
-        <div class="tc">
-          <img src="http://tachyons.io/img/avatar_1.jpg" class="br-100 h3 w3 dib" title="Photo of a kitty staring at you">
-          <h1 class="f4">Mimi Whitehouse</h1>
-          <hr class="mw3 bb bw1 b--black-10">
-        </div>
-        <p class="lh-copy measure center f6 black-70">
-          Quite affectionate and outgoing.
-          She loves to get chin scratches and will
-          roll around on the floor waiting for you give her more of them.
-        </p>
-      </a>
-      <a href="#" class="center-s link dim mw5 bg-white br3 pa3 pa4-ns ma3 ba b--black-10">
-        <div class="tc">
-          <img src="http://tachyons.io/img/avatar_1.jpg" class="br-100 h3 w3 dib" title="Photo of a kitty staring at you">
-          <h1 class="f4">Mimi Whitehouse</h1>
-          <hr class="mw3 bb bw1 b--black-10">
-        </div>
-        <p class="lh-copy measure center f6 black-70">
-          Quite affectionate and outgoing.
-          She loves to get chin scratches and will
-          roll around on the floor waiting for you give her more of them.
-        </p>
-      </a>
-      <a href="#" class="center-s link dim mw5 bg-white br3 pa3 pa4-ns ma3 ba b--black-10">
-        <div class="tc">
-          <img src="http://tachyons.io/img/avatar_1.jpg" class="br-100 h3 w3 dib" title="Photo of a kitty staring at you">
-          <h1 class="f4">Mimi Whitehouse</h1>
-          <hr class="mw3 bb bw1 b--black-10">
-        </div>
-        <p class="lh-copy measure center f6 black-70">
-          Quite affectionate and outgoing.
-          She loves to get chin scratches and will
-          roll around on the floor waiting for you give her more of them.
-        </p>
-      </a>
+    <div id="pets" class="flex flex-wrap flex-column-s justify-around items-center w-100">
+      <!-- insert template here -->
     </div>
-
   </main>
+  <footer class="flex items-center f7 pv3 bg-purple fixed bottom-0 w-100">
+    <a href="https://github.com/drukelly/MongoDB-x-Petfinder" target="_blank" class="b link white pl4 w-auto">Github Repo</a>
+    <a href="https://www.drukelly.com" target="_blank" class="b link white ml-auto pr4 tr w-auto">John (Dru) Kelly</a>
+  </footer>
   <script>
     const path = window.location.pathname;
+    const apiPath = `/api${path}`
     const title =  path.replace('/', '')
     
     const titleCase = str => {
@@ -74,10 +46,44 @@
     }
     
     document.querySelector('#pet-label').innerHTML = titleCase(title)
-
-    fetch(`/api/${path}`, () => {
-      console.log(path)
-    })
+    
+    fetch(apiPath)
+      .then(response => response.json())
+      .then(pets => {
+        for (let i = 0; i < pets.length; i++) {
+          let id       = pets[i]
+          
+          let template =
+          `<a href="${id.url}" target="_blank" class="center-s link dim mw5 bg-white br3 pa3 pa4-ns ma3 blue ba b--black-10 w-25-ns w-100">
+            <div class="tc">
+              <img src="${id.photos[0].medium}" class="br-100 h3 w3 dib" title="Photo of a kitty staring at you">
+              <h1 class="f4 dark-blue">${titleCase(id.name)}</h1>
+              <hr class="mw3 bb bw1 b--black-10">
+              <p class="near-black f6 fw6 lh-title">${id.contact.address.city}, ${id.contact.address.state}</p>
+              <table class="f7 near-black w-100" cellspacing="0">
+                <tr class="bb b--black-10">
+                  <th class="pa1 w-50">Breed<th>
+                  <td class="pa1 w-50">${id.breeds.primary}</td>
+                </tr>
+                <tr class="bb b--black-10">
+                  <th class="pa1">Age<th>
+                  <td class="pa1">${id.age}</td>
+                </tr>
+                <tr class="bb b--black-10">
+                  <th class="pa1">Gender<th>
+                  <td class="pa1">${id.gender}</td>
+                </tr>
+                <tr>
+                  <th class="pa1">Size<th>
+                  <td class="pa1">${id.size}</td>
+                </tr>
+              </table>
+            </div>
+          </a>`
+          const target = document.querySelector('#pets')
+          target.innerHTML += template
+        }
+      })
   </script>
 </body>
 </html>

@@ -34,17 +34,31 @@ module.exports = (app) => {
           .then(response => {
             pets.push(response)
             mongodb.on('error', error => console.log('Database Error: ', error))
-            let animals = req.params.type
-            switch (animals) {
+            let pointer = req.params.type
+            switch (pointer) {
               case 'dog':
-                mongodb.dogs.insert(pets)
+                // console.log(pets[0].animals)
+                mongodb.dogs.insert(pets[0].animals)
                 break
               case 'cat':
-                mongodb.cats.insert(pets)
+                console.log(pets[0].animals)
+                mongodb.cats.insert(pets[0].animals)
                 break
             }
             res.json(pets)
           })
       })
+  })
+  app.get('/api/dogs', (_req, res) => {
+    // only return entries with photos
+    mongodb.dogs.find({ 'photos': { $exists: 1, $not: { $size: 0 } } }, (error, found) => {
+      error ? console.log(error) : res.json(found)
+    })
+  })
+  app.get('/api/cats', (_req, res) => {
+    // only return entries with photos
+    mongodb.cats.find({ 'photos': { $exists: 1, $not: { $size: 0 } } }, (error, found) => {
+      error ? console.log(error) : res.json(found)
+    })
   })
 }
